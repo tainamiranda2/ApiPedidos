@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class PedidosController extends Controller
 {
+    public function __construct(private Pedido $pedido){
+
+    }
     public function index(Pedido $pedido){
         //minino para passar no primeiro teste
       /*  return response()->json([
@@ -15,7 +18,23 @@ class PedidosController extends Controller
         ]);*/
 
         //segundo test
-return response()->json($pedido->all());
+        return response()->json($this->pedido->all());
 
     }
+
+    public function show($id){
+
+    $pedido=$this->pedido->find($id);
+
+    return response()->json($pedido);
+//por padrão já tme status 201
+    }
+
+    public function store(Request $resquest){
+
+        $pedido=$this->pedido->create($resquest->all());
+    
+        return response()->json($pedido, 201);
+
+        }
 }

@@ -14,7 +14,7 @@ class PedidosControllerTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_pedidos_endpoint_get(): void
+    public function test_get_pedidos_endpoint(): void
     {
 //gerando dados
 $pedidos=Pedido::factory(3)->Create();
@@ -47,6 +47,60 @@ $response = $this->getJson('/api/pedidos');
     );
 
         
+    }
+    public function test_get_single_pedidos_endpoint(): void
+    {
+        //gerando dados
+        $pedido=Pedido::factory(1)->CreateOne();
+        $response = $this->getJson('/api/pedidos/' .$pedido->id);
+
+        //dd($response->baseResponse);
+        //testano ststus code
+
+        $response->assertStatus(200);
+    //testando quantidade de dadso na api
+       // $response->assertJsonCount(3);
+
+        $response->assertJson(function(AssertableJson $json){
+            //ver se tem string ou  numero
+            $json->whereAllType([
+            'id'=>'integer',
+            'nome'=>'string',
+            'descricao'=>'string',
+            'status'=>'string',
+            'cliente_id'=>'string',
+            ]);
+           
+             //ver se tem todas as colunas e aceita até mesmo as colunas nao informadas
+        $json->hasAll(['id', 'nome', 'descricao','status','cliente_id'])->etc();
+
+//verifica valores
+
+        }
+       
+    );
+
+        
+    }
+
+    public function test_post_pedido_endpoin(){
+        $pedido = Pedido::factory(1)->makeOne()->toArray();
+
+        $response=$this->postJson('/api/pedidos', $pedido);
+       
+        $response->assertStatus(201);
+
+        $response->assertJson(function(AssertableJson $json) use($pedido){
+            //ver se tem string ou  numero
+            $json->whereAll([
+    
+            'nome'=>$pedido['nome'] ,
+            'descricao'=>$pedido[ 'descricao'],
+            'status'=>$pedido['status'] , 
+            'cliente_id'=>$pedido['cliente_id'], 
+            ])->etc();
+        });
+    
     }
 
 

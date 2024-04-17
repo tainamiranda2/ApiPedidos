@@ -19,3 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('pedidos', [\App\Http\Controllers\Api\PedidosController::class, 'index']);
+Route::get('pedidos/{id}', [\App\Http\Controllers\Api\PedidosController::class, 'show']);
+Route::post('pedidos', [\App\Http\Controllers\Api\PedidosController::class, 'store']);
+

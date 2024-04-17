@@ -2,8 +2,9 @@ api para pedidos
 
 
 testes  de feature para pedidos: 
-## testar tipo de dados
-## verifac se tme tdodas as colunas
+## verifica statsu de dados
+## verifica tipo de dados
+## verifaca se tee todas as colunas
 ## verifica valores
 
 ## funcionalidades
