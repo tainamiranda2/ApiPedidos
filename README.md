@@ -1,19 +1,35 @@
-api para pedidos
+```markdown
+# API para Pedidos
 
+## Testes
 
-testes  de feature para pedidos: 
-## verifica statsu de dados
-## verifica tipo de dados
-## verifaca se tee todas as colunas
-## verifica valores
+Endpoints disponíveis para testes:
+- GET
+- POST
+- PUT/id
+- PATCH/id
+- GET/id
+- DELETE/id
 
-## funcionalidades
-fazer pedidos
-ver status
-gerenciar historicos
+### Testes de Feature para Pedidos:
+- Verificar status de dados
+- Verificar tipo de dados
+- Verificar se tem todas as colunas
+- Verificar valores
 
-##  comando para rodar testes
+## Funcionalidades
+
+- Fazer pedidos
+
+## Comando para Rodar Testes
+
+Para executar os testes, utilize o seguinte comando:
+
+```bash
 php artisan test
+```
 
-## dependcias 
-phpunit
+## Dependências
+
+- PHPUnit
+```

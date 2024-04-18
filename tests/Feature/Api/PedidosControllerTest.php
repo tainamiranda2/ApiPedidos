@@ -83,7 +83,7 @@ $response = $this->getJson('/api/pedidos');
         
     }
 
-    public function test_post_pedido_endpoin(){
+    public function test_post_pedido_endpoint(){
         $pedido = Pedido::factory(1)->makeOne()->toArray();
 
         $response=$this->postJson('/api/pedidos', $pedido);
@@ -103,5 +103,58 @@ $response = $this->getJson('/api/pedidos');
     
     }
 
+    public function test_put_pedido_endpoint(){
+    
+        Pedido::factory(1)->CreateOne();
 
+     $pedido=[
+        'nome'=>'Atualizando pedido',
+        'descricao'=>'Atualizando descrição',
+        'status'=>'Atualizando status',
+        'cliente_id'=>'17'
+     ];
+        $response=$this->putJson('/api/pedidos/1', $pedido);
+       
+        $response->assertStatus(200);
+
+        $response->assertJson(function(AssertableJson $json) use($pedido){
+            //ver se tem string ou numero
+            $json->whereAll([
+    
+            'nome'=>$pedido['nome'] ,
+            'descricao'=>$pedido[ 'descricao'],
+            'status'=>$pedido['status'] , 
+            'cliente_id'=>$pedido['cliente_id']
+            ])->etc();
+        });
+    
+    }
+
+    public function test_patch_pedido_endpoint(){
+    
+        Pedido::factory(1)->CreateOne();
+
+     $pedido=[
+        'nome'=>'Atualizando só pedido mesmo',
+     ];
+        $response=$this->patchJson('/api/pedidos/2', $pedido);
+       
+        $response->assertStatus(200);
+
+        $response->assertJson(function(AssertableJson $json) use($pedido){
+            //ver se tem string ou numero
+            $json->where('nome', $pedido['nome'])->etc();
+        });
+    
+    }
+
+    public function test_delete_pedido_endpoint(){
+    
+        Pedido::factory(1)->Create();
+
+        $response=$this->deleteJson('/api/pedidos/3' );
+       
+        $response->assertStatus(204);
+
+    }
 }

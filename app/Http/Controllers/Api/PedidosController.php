@@ -37,4 +37,22 @@ class PedidosController extends Controller
         return response()->json($pedido, 201);
 
         }
+        public function update($id, Request $resquest){
+
+            $pedido=$this->pedido->find($id);
+        
+            $pedido->update($resquest->all());
+
+            return response()->json($pedido, 200);
+    
+            }
+            public function destroy($id){
+
+                $pedido=$this->pedido->find($id);
+            
+                $pedido->delete();
+    
+                return response()->json([], 204);
+        
+                }
 }
