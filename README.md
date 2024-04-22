@@ -5,11 +5,11 @@
 
 Endpoints disponíveis para testes:
 - GET
+- PUT
+- PATCH
 - POST
-- PUT/id
-- PATCH/id
 - GET/id
-- DELETE/id
+- DELETE
 
 ### Testes de Feature para Pedidos:
 - Verificar status de dados
@@ -32,4 +32,11 @@ php artisan test
 ## Dependências
 
 - PHPUnit
-```
+
+## Utilização de Migrations e Factories
+
+O projeto utiliza migrations e factories para gerar dados falsos. Isso permite criar um ambiente de teste rico em dados, facilitando a verificação do funcionamento correto da API. As migrations são usadas para definir a estrutura do banco de dados, enquanto as factories são usadas para gerar dados falsos para os testes.
+
+``` 
+
+Este README destaca ainda mais os recursos utilizados, como migrations e factories, para gerar dados falsos, tornando os testes mais robustos e o ambiente de teste mais eficaz.
