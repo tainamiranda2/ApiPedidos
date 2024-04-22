@@ -48,6 +48,7 @@ $response = $this->getJson('/api/pedidos');
 
         
     }
+    
     public function test_get_single_pedidos_endpoint(): void
     {
         //gerando dados
@@ -83,6 +84,8 @@ $response = $this->getJson('/api/pedidos');
         
     }
 
+
+   
     public function test_post_pedido_endpoint(){
         $pedido = Pedido::factory(1)->makeOne()->toArray();
 
@@ -102,8 +105,11 @@ $response = $this->getJson('/api/pedidos');
         });
     
     }
+    
 
-    public function test_put_pedido_endpoint(){
+
+   
+       public function test_put_pedido_endpoint(){
     
         Pedido::factory(1)->CreateOne();
 
@@ -129,7 +135,8 @@ $response = $this->getJson('/api/pedidos');
         });
     
     }
-
+    
+       
     public function test_patch_pedido_endpoint(){
     
         Pedido::factory(1)->CreateOne();
@@ -148,7 +155,8 @@ $response = $this->getJson('/api/pedidos');
     
     }
 
-    public function test_delete_pedido_endpoint(){
+   
+       public function test_delete_pedido_endpoint(){
     
         Pedido::factory(1)->Create();
 
@@ -157,4 +165,5 @@ $response = $this->getJson('/api/pedidos');
         $response->assertStatus(204);
 
     }
+    
 }
